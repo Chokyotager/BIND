@@ -20,7 +20,7 @@ length_cutoff = 2048
 
 print("Loading main database")
 
-main_database = json.loads(open("examples/sampled_binding_db.json").read())
+main_database = json.loads(open("examples/bindingdb_sample.json").read())
 all_smiles_pairs = dict()
 
 for key in main_database.keys():

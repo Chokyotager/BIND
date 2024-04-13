@@ -32,8 +32,6 @@ conda env create -f environment.yml
 conda activate bind
 ```
 
-There is also an explicit link file in requirements.txt for all Conda packages.
-
 BIND has been tested on two separate Ubuntu 22.04.3 LTS (GNU/Linux 5.15.0-58-generic x86_64) systems. It theoretically should work for any environment so long as all package requirements are fulfilled.
 
 Installation should take under ten minutes in most cases.
@@ -70,7 +68,7 @@ There are some advanced options in running inference. You can also specify the d
 
 Take note also that BIND defaults to truncating proteins that are longer than 4,096 amino acids. You can change this limit to whatever you want by specifying it in the `--truncate` option.
 
-## API practical demonstration!
+### API practical demonstration!
 
 There is an IPython Notebook that you can open using Jupyter and/or other notebooks (not tested) named `BIND_demo.ipynb`. It specifies how to use the Python interface to call BIND directly. Usually this is for more advanced users who want to integrate BIND directly into their Python pipeline. For standard screening workflows, calling the inference script will probably suffice in most cases.
 

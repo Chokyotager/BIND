@@ -79,7 +79,7 @@ model.to(device)
 
 print("\n")
 print("██████╗░██╗███╗░░██╗██████╗░\n██╔══██╗██║████╗░██║██╔══██╗\n██████╦╝██║██╔██╗██║██║░░██║\n██╔══██╗██║██║╚████║██║░░██║\n██████╦╝██║██║░╚███║██████╔╝\n╚═════╝░╚═╝╚═╝░░╚══╝╚═════╝░")
-print("(Version 1.1b)")
+print("(Binding INteraction Determination - Version 1.2)")
 print("\n")
 
 print("Transformers version:", transformers.__version__)
