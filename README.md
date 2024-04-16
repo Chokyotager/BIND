@@ -80,6 +80,10 @@ If you want to train your own model, you need to download the BindingDB dataset 
 
 The scripts used to calculate the success rates, etc., are in paper_eval_scripts. These scripts are just here for reference and are effectively vestigial in the code.
 
+### Limitations
+
+Please read the limitations discussed in the paper to understand the constraints of this work! 
+
 ## Contribution
 
 Users are welcome to contribute to the development of the model through pull-requests. You are also welcome to raise feature requests in the "issues" section of the GitHub. Please report any issues / bugs there too.

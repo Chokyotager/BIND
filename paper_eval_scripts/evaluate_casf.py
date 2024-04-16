@@ -46,7 +46,7 @@ esm_device = torch.device("cpu")
 device = torch.device("cuda:0")
 
 esm_model = esm_model.to(esm_device)
-model = torch.load("saves/model_40000.pth", map_location=device)
+model = torch.load("saves/model_final.pth", map_location=device)
 model.to(device)
 
 model.eval()

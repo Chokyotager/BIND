@@ -46,7 +46,7 @@ esm_device = torch.device("cpu")
 device = torch.device("cuda:2")
 
 esm_model = esm_model.to(esm_device)
-model = torch.load("saves/model_80000.pth", map_location=device)
+model = torch.load("saves/model_final.pth", map_location=device)
 model.to(device)
 
 model.eval()
@@ -59,7 +59,11 @@ for protein in sorted(proteins):
 
     print(dud_id)
 
-    sequence = str(list(SeqIO.parse("DUD-E-fastas/" + protein, "fasta"))[0].seq)
+    sequences = [str(x.seq) for x in list(SeqIO.parse("DUD-E-fastas/" + protein, "fasta"))]
+
+    sequences = sorted(sequences, key=lambda x: len(x), reverse=True)
+
+    sequence = ".".join(sequences)
     
     encoded_input = esm_tokeniser([sequence], padding="longest", truncation=False, return_tensors="pt")
     esm_output = esm_model.forward(**encoded_input.to(esm_device), output_hidden_states=True)
