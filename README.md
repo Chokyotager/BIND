@@ -21,6 +21,10 @@ This repository contains the code we used in training of BIND, and an inference 
 
 ![Figure abstract](https://github.com/Chokyotager/BIND/blob/main/art/abstract.png?raw=true)
 
+Please read the paper for more details:
+
+Preprint (bioRxiv): https://doi.org/10.1101/2024.04.16.589765
+
 ## Installation
 ```sh
 git clone https://github.com/Chokyotager/BIND.git
@@ -80,7 +84,7 @@ If you want to train your own model, you need to download the BindingDB dataset 
 
 The scripts used to calculate the success rates, etc., are in paper_eval_scripts. These scripts are just here for reference and are effectively vestigial in the code.
 
-### Limitations
+## Limitations
 
 Please read the limitations discussed in the paper to understand the constraints of this work! 
 
@@ -94,7 +98,22 @@ The current project is maintained by Hilbert Lam. Correspondence can be found in
 
 ## Reproduction of results in the paper
 
-We provide the evaluation dataset SMILES and FASTAs in our manuscript as supplementary material instead of here as the datasets are rather large.
+We provide the evaluation dataset FASTAs in our manuscript as supplementary material instead of here as the datasets are rather large. The SMILES are pretty big to be put as supplementary, so you can convert them yourself using OpenBabel from the original datasets.
 
 ## License
 License details can be found in the LICENSE file.
+
+## Citation
+```
+@article{lam_protein_2024,
+	title = {Protein language models are performant in structure-free virtual screening},
+	url = {https://www.biorxiv.org/content/10.1101/2024.04.16.589765v1},
+	doi = {10.1101/2024.04.16.589765},
+	language = {en},
+	urldate = {2023-07-11},
+	journal = {bioRxiv},
+	author = {Lam, Hilbert Yuen In and Jia Sheng, Guan and Xing Er, Ong and Pincket, Robbe and Yuguang, Mu},
+	month = apr,
+	year = {2024},
+}
+```
