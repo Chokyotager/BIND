@@ -94,7 +94,7 @@ Users are welcome to contribute to the development of the model through pull-req
 
 ## Maintenance
 
-The current project is maintained by Hilbert Lam. Correspondence can be found in the manuscript if you have any questions. You can also contact Hilbert via email or (informally) on Discord, using the handle chocoparrot.
+The current project is maintained by Hilbert Lam. Correspondence can be found in the manuscript if you have any questions. You can also contact Hilbert via email (hiddelam (at) gmail.com) or (informally) on Discord, using the handle chocoparrot.
 
 ## Reproduction of results in the paper
 
