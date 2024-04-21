@@ -56,7 +56,7 @@ In order to run inference with BIND, you can run the following script once every
 python3 bind.py --proteins <protein>.fasta --ligands <ligands>.smi --output <output>.tsv
 ```
 
-This will perform inference for all pairs of proteins and ligands specified, and output a single TSV file with five columns: input protein name, input SMILES, predicted pKi, predicted pIC50, predicted Kd, predicted EC50, logits and non-binder probability. Take note that the non-binder probability is just sigmoid(logits) and is the output from the classifier. You can see an example output file in `examples/example_output.tsv`.
+This will perform inference for all pairs of proteins and ligands specified, and output a single TSV file with five columns: input protein name, input SMILES, predicted pKi, predicted pIC50, predicted pKd, predicted pEC50, logits and non-binder probability. Take note that the non-binder probability is just sigmoid(logits) and is the output from the classifier. You can see an example output file in `examples/example_output.tsv`.
 
 In our paper, we found that the strongest screening power comes from the non-binder probability. **The lower the logits / non-binder probability, the better**. Whereas for the drug-target affinity predictions, the higher the better.
 
