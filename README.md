@@ -100,7 +100,12 @@ The current project is maintained by Hilbert Lam. Correspondence can be found in
 
 We provide the evaluation dataset FASTAs in our manuscript as supplementary material instead of here as the datasets are rather large. The SMILES are pretty big to be put as supplementary, so you can convert them yourself using OpenBabel from the original datasets.
 
+## Cross-attention graph module
+
+The cross-attention graph module is described in `cross_attention_graph.py`. You have to add your own GATConv2 for the self-attention to make the entire cross-attention graph block as described in the manuscript.
+
 ## License
+
 License details can be found in the LICENSE file.
 
 ## Citation
@@ -110,7 +115,7 @@ License details can be found in the LICENSE file.
 	url = {https://www.biorxiv.org/content/10.1101/2024.04.16.589765v1},
 	doi = {10.1101/2024.04.16.589765},
 	language = {en},
-	urldate = {2023-07-11},
+	urldate = {2024-04-21},
 	journal = {bioRxiv},
 	author = {Lam, Hilbert Yuen In and Jia Sheng, Guan and Xing Er, Ong and Pincket, Robbe and Yuguang, Mu},
 	month = apr,
