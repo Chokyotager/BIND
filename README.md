@@ -72,6 +72,8 @@ There are some advanced options in running inference. You can also specify the d
 
 Take note also that BIND defaults to truncating proteins that are longer than 4,096 amino acids. You can change this limit to whatever you want by specifying it in the `--truncate` option.
 
+You can also change the batch size by specifying `--batch_size` (which defaults to 1) and the output precision with `--precision` (defaults to 5 decimal places). Increasing the batch size usually significantly decreases inference time if CUDA devices are used.
+
 ### API practical demonstration!
 
 There is an IPython Notebook that you can open using Jupyter and/or other notebooks (not tested) named `BIND_demo.ipynb`. It specifies how to use the Python interface to call BIND directly. Usually this is for more advanced users who want to integrate BIND directly into their Python pipeline. For standard screening workflows, calling the inference script will probably suffice in most cases.

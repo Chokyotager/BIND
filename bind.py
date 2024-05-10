@@ -78,16 +78,20 @@ model = torch.load(script_directory + "/saves/BIND_checkpoint_12042024.pth", map
 model.eval()
 model.to(device)
 
-print("\n")
+print("")
 print("██████╗░██╗███╗░░██╗██████╗░\n██╔══██╗██║████╗░██║██╔══██╗\n██████╦╝██║██╔██╗██║██║░░██║\n██╔══██╗██║██║╚████║██║░░██║\n██████╦╝██║██║░╚███║██████╔╝\n╚═════╝░╚═╝╚═╝░░╚══╝╚═════╝░")
-print("(Binding INteraction Determination - Version 1.2)")
-print("\n")
+print("(Binding INteraction Determination - Version 1.3)")
+print("Manuscript: https://doi.org/10.1101/2024.04.16.589765")
+print("")
 
 print("Transformers version:", transformers.__version__)
 print("Torch version:", torch.__version__)
 print("NumPy version:", np.__version__)
 print("Torch Geometric version:", torch_geometric.__version__)
 print("NetworkX version:", networkx.__version__)
+print("")
+print("Total number of proteins:", len(sequences))
+print("Total number of ligands:", len(all_smiles))
 print("\n")
 
 all_scores = [["Input protein", "Input SMILES", "pKi", "pIC50", "pKd", "pEC50", "Logit", "Non-binder probability"]]
@@ -108,9 +112,7 @@ for i in range(len(sequences)):
     hidden_states = [x.to(device).detach() for x in hidden_states]
     attention_mask = encoded_input["attention_mask"].to(device)
 
-    current_batch = list()
-
-    for j in tqdm(range(0, len(all_smiles), args.batch_size), ascii=" ▖▘▝▗▚▞█"):
+    for j in tqdm(range(0, len(all_smiles), args.batch_size), ascii=" ▖▘▝▗▚▞█", smoothing=0.1):
 
       current_batch_smiles = [x for x in all_smiles[j:j+args.batch_size]]
       current_batch = [get_graph(x) for x in current_batch_smiles]
