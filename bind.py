@@ -1,6 +1,7 @@
 # Binding INteraction Determination
 import os
 
+import numpy as np
 import torch, torch_geometric, transformers, networkx
 from transformers import logging, AutoModel, AutoTokenizer
 
@@ -23,16 +24,16 @@ from tqdm import tqdm
 from Bio import SeqIO
 import argparse
 
-import math
-
 def sigmoid(x):
-  return 1 / (1 + math.exp(-x))
+  return 1 / (1 + np.exp(-x))
 
 parser = argparse.ArgumentParser(prog="python3 run_bind.py", description="Binding INteraction Determination version beta")
 parser.add_argument("--proteins", type=str, help="Input protein FASTA file", required=True)
 parser.add_argument("--ligands", type=str, help="Input ligand SMILES file", required=True)
 parser.add_argument("--output", type=str, help="Output file", required=True)
 parser.add_argument("--truncate", type=int, default=4096, help="Truncate length")
+parser.add_argument("--batch_size", type=int, default=1, help="Batch size of number of ligands")
+parser.add_argument("--precision", type=int, default=5, help="Output precision")
 parser.add_argument("--esm_device", type=str, default="cpu", help="Torch device to run ESM-2 on, defaults to 'cpu'")
 parser.add_argument("--bind_device", type=str, default="cpu", help="Torch device to run BIND on, defaults to 'cpu'")
 
@@ -84,6 +85,7 @@ print("\n")
 
 print("Transformers version:", transformers.__version__)
 print("Torch version:", torch.__version__)
+print("NumPy version:", np.__version__)
 print("Torch Geometric version:", torch_geometric.__version__)
 print("NetworkX version:", networkx.__version__)
 print("\n")
@@ -106,16 +108,31 @@ for i in range(len(sequences)):
     hidden_states = [x.to(device).detach() for x in hidden_states]
     attention_mask = encoded_input["attention_mask"].to(device)
 
-    for smiles in tqdm(all_smiles, ascii=" ▖▘▝▗▚▞█"):
-      
-      smiles_graph = get_graph(smiles)
+    current_batch = list()
 
-      current_graph = Batch.from_data_list([smiles_graph]).to(device).detach()
-      output = model.forward(current_graph, hidden_states, attention_mask)
+    for j in tqdm(range(0, len(all_smiles), args.batch_size), ascii=" ▖▘▝▗▚▞█"):
 
-      output = [float(x.detach().cpu().numpy()[0][0]) for x in output]
-      probability = sigmoid(output[-1])
+      current_batch_smiles = [x for x in all_smiles[j:j+args.batch_size]]
+      current_batch = [get_graph(x) for x in current_batch_smiles]
+      current_batch_size = len(current_batch)
 
-      all_scores.append([current_id, smiles] + [str(x) for x in output] + [str(probability)])
+      repeated_hidden_states = [x.repeat(current_batch_size, 1, 1) for x in hidden_states]
+      repeated_attention_mask = attention_mask.repeat(current_batch_size, 1)
+
+      current_graphs = Batch.from_data_list(current_batch).to(device).detach()
+      output = model.forward(current_graphs, repeated_hidden_states, repeated_attention_mask)
+
+      output = [x.detach().cpu().numpy() for x in output]
+
+      for k in range(current_batch_size):
+
+        smiles = current_batch_smiles[k]
+        
+        current_output = [x[k][0] for x in output]
+        probability = sigmoid(current_output[-1])
+
+        current_output = current_output + [probability]
+
+        all_scores.append([current_id, smiles] + [np.array2string(x, precision=args.precision) for x in current_output])
 
 open(args.output, "w+").write("\n".join("\t".join(x) for x in all_scores))
