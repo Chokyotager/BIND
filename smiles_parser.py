@@ -20,7 +20,7 @@ def parse_smiles(
     # networkx graph
     network: networkx.Graph = pysmiles.read_smiles(
         input,
-        explicit_hydrogen=False,
+        explicit_hydrogen=True,
         zero_order_bonds=False,
         reinterpret_aromatic=False,
     )
