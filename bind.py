@@ -80,7 +80,7 @@ model.to(device)
 
 print("")
 print("██████╗░██╗███╗░░██╗██████╗░\n██╔══██╗██║████╗░██║██╔══██╗\n██████╦╝██║██╔██╗██║██║░░██║\n██╔══██╗██║██║╚████║██║░░██║\n██████╦╝██║██║░╚███║██████╔╝\n╚═════╝░╚═╝╚═╝░░╚══╝╚═════╝░")
-print("(Binding INteraction Determination - Version 1.3)")
+print("(Binding INteraction Determination - Version 1.4)")
 print("Manuscript: https://doi.org/10.1101/2024.04.16.589765")
 print("")
 
