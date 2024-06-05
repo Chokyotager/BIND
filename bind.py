@@ -27,7 +27,7 @@ import argparse
 def sigmoid(x):
   return 1 / (1 + np.exp(-x))
 
-parser = argparse.ArgumentParser(prog="python3 run_bind.py", description="Binding INteraction Determination version beta")
+parser = argparse.ArgumentParser(prog="python3 run_bind.py", description="Binding INteraction Determination version 1.4")
 parser.add_argument("--proteins", type=str, help="Input protein FASTA file", required=True)
 parser.add_argument("--ligands", type=str, help="Input ligand SMILES file", required=True)
 parser.add_argument("--output", type=str, help="Output file", required=True)
